@@ -1,0 +1,73 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #eee;
+}
+body {
+    background: #eee;
+}
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: grid;
+    grid-template-columns: repeat(4,15vw);
+    grid-template-rows: repeat(4,minmax(15vh,18vh));
+    gap: 10px;
+    overflow: hidden;
+}
+.item {
+    position: relative;
+    transform-style: preserve-3d;
+    margin: 5px;
+}
+.middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.front , .front img{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+.front , .back {
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0 ,0.5);
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    transition: transform 400ms linear;
+}
+.back-content {
+    text-align: center;
+    /*white-space: nowrap;*/
+}
+.back-content p , .back-content i {
+    color: black;
+}
+.back-content i {
+    font-size: 1.5em;
+    font-weight:550 ;
+}
+.back {
+    background: linear-gradient(rgba(0,0,0,0.5),white 70%,rgba(0, 0, 0,0.4));
+    transform: perspective(1200px) rotateY(180deg);
+}
+.front{
+    transform: perspective(1200px) rotateY(0deg);
+}
+.item.flip > .front{
+    transform: perspective(1200px) rotateY(-180deg);
+    transition: transform 400ms linear;
+    box-shadow: inset 0 0 2px 2px rgba(0, 0, 0 ,0.5);
+}
+.item.flip > .back {
+    transform: perspective(1200px) rotateY(0deg);
+    transition: transform 400ms linear;
+    box-shadow: inset 0 0 2px 2px rgba(0, 0, 0 ,0.5);
+}
